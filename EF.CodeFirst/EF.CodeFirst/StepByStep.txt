@@ -1,0 +1,44 @@
+﻿ASP NET MVC - Entity Framework Code First - Tutorial
+
+1- Create a model class with de name "Product"
+
+2- Create the properties:
+int ProductID
+string Name, Description
+decimal Price
+
+3- Add Entity Framework using Manage Nuget
+
+4- Create a model class with de name "StoreContext"
+
+5- Use ": DbContext" for inhreit from EF
+
+6- Add a DBSet<> propertie:
+public DbSet<Product> product {get;set;}
+
+7- In Web.config add a <connectionStrings> above <configSections/>
+
+8- Add a new connection string:
+<add name="StoreContext" connectionString="Data Source=.\SQLEXPRESS;Initial Catalog=name of database to be created; Integrated Security=True"
+providerName="System.Data.SqlClient"/>
+
+9- Add a Controller
+
+10- Add a new List ActionResult :
+
+public ActionResult List()
+{
+	using(StoreContext db = new StoreContext())
+	{
+		var products = db.product.ToList();
+		return View(products);
+	}
+}
+
+11- Add a View for this ActionResult using Product as a Model Class, StoreContext as a Context and List as a Template
+
+12- Build, Save and Test
+
+
+
+
